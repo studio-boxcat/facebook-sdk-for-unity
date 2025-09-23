@@ -267,7 +267,6 @@ namespace Facebook.Unity
                             ((EditorFacebook)FB.facebook).Init(onInitComplete);
                         };
                         ComponentFactory.GetComponent<EditorFacebookLoader>();
-                        ComponentFactory.GetComponent<CodelessCrawler>();
                         ComponentFactory.GetComponent<CodelessUIInteractEvent>();
                     }
                 }
@@ -305,7 +304,6 @@ namespace Facebook.Unity
                                     onInitComplete);
                             };
                             ComponentFactory.GetComponent<IOSFacebookLoader>();
-                            ComponentFactory.GetComponent<CodelessCrawler>();
                             ComponentFactory.GetComponent<CodelessUIInteractEvent>();
                             break;
                         case FacebookUnityPlatform.Android:
@@ -318,7 +316,6 @@ namespace Facebook.Unity
                                     onInitComplete);
                             };
                             ComponentFactory.GetComponent<AndroidFacebookLoader>();
-                            ComponentFactory.GetComponent<CodelessCrawler>();
                             ComponentFactory.GetComponent<CodelessUIInteractEvent>();
                             break;
                         case FacebookUnityPlatform.Windows:

@@ -1,0 +1,6 @@
+<Project>
+  <PropertyGroup>
+    <UNITY_MANAGED_DIR>/Applications/Unity/Hub/Editor/2022.3.60f1/Unity.app/Contents/Managed/</UNITY_MANAGED_DIR>
+    <UNITY_ENGINE_DIR>/Applications/Unity/Hub/Editor/2022.3.60f1/Unity.app/Contents/Managed/UnityEngine/</UNITY_ENGINE_DIR>
+    </PropertyGroup>
+</Project>
