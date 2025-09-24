@@ -77,33 +77,5 @@ namespace Facebook.Unity.Editor
             writer.Write(data);
             writer.Close();
         }
-
-        private static int GetUnityVersionNumber()
-        {
-            string version = Application.unityVersion;
-            string[] versionComponents = version.Split('.');
-
-            int majorVersion = 0;
-            int minorVersion = 0;
-
-            try
-            {
-                if (versionComponents != null && versionComponents.Length > 0 && versionComponents[0] != null)
-                {
-                    majorVersion = Convert.ToInt32(versionComponents[0]);
-                }
-
-                if (versionComponents != null && versionComponents.Length > 1 && versionComponents[1] != null)
-                {
-                    minorVersion = Convert.ToInt32(versionComponents[1]);
-                }
-            }
-            catch (System.Exception e)
-            {
-                Debug.LogError("Error parsing Unity version number: " + e);
-            }
-
-            return (majorVersion * 100) + (minorVersion * 10);
-        }
     }
 }

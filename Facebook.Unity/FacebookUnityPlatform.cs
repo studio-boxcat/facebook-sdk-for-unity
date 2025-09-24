@@ -27,7 +27,5 @@ namespace Facebook.Unity
         Unknown,
         Android,
         IOS,
-        WebGL,
-        Windows
     }
 }

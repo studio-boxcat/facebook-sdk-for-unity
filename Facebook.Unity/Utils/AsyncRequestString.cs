@@ -95,7 +95,7 @@ namespace Facebook.Unity
                 }
 
                 UnityWebRequest webRequest = UnityWebRequest.Get(url + urlParams);
-                if (Constants.CurrentPlatform != FacebookUnityPlatform.WebGL)
+                if (!Constants.IsWeb)
                 {
                     webRequest.SetRequestHeader("User-Agent", Constants.GraphApiUserAgent);
                 }
@@ -123,7 +123,7 @@ namespace Facebook.Unity
                     }
                 }
 
-                if (Constants.CurrentPlatform != FacebookUnityPlatform.WebGL)
+                if (!Constants.IsWeb)
                 {
                     this.query.headers["User-Agent"] = Constants.GraphApiUserAgent;
                 }

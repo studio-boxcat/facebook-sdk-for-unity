@@ -23,8 +23,6 @@ namespace Facebook.Unity
     using System;
     using System.Collections.Generic;
     using System.Globalization;
-    using Facebook.Unity.Windows;
-    using Facebook.Unity.Canvas;
     using Facebook.Unity.Editor;
     using Facebook.Unity.Mobile;
     using Facebook.Unity.Mobile.Android;
@@ -252,15 +250,6 @@ namespace Facebook.Unity
 
                 if (Constants.IsEditor)
                 {
-                    if (Application.platform == RuntimePlatform.WindowsEditor && (FacebookSettings.EditorBuildTarget == FacebookSettings.BuildTarget.StandaloneWindows || FacebookSettings.EditorBuildTarget == FacebookSettings.BuildTarget.StandaloneWindows64))
-                    {
-                        FB.OnDLLLoadedDelegate = delegate
-                        {
-                            ((WindowsFacebook)FB.facebook).Init(appId, FB.ClientToken, onHideUnity, onInitComplete);
-                        };
-                        ComponentFactory.GetComponent<WindowsFacebookLoader>();
-                    }
-                    else
                     {
                         FB.OnDLLLoadedDelegate = delegate
                         {
@@ -274,25 +263,6 @@ namespace Facebook.Unity
                 {
                     switch (Constants.CurrentPlatform)
                     {
-                        case FacebookUnityPlatform.WebGL:
-                            FB.OnDLLLoadedDelegate = delegate
-                            {
-                                ((CanvasFacebook)FB.facebook).Init(
-                                    appId,
-                                    cookie,
-                                    logging,
-                                    status,
-                                    xfbml,
-                                    FacebookSettings.ChannelUrl,
-                                    authResponse,
-                                    frictionlessRequests,
-                                    javascriptSDKLocale,
-                                    Constants.DebugMode,
-                                    onHideUnity,
-                                    onInitComplete);
-                            };
-                            ComponentFactory.GetComponent<CanvasFacebookLoader>();
-                            break;
                         case FacebookUnityPlatform.IOS:
                             FB.OnDLLLoadedDelegate = delegate
                             {
@@ -317,13 +287,6 @@ namespace Facebook.Unity
                             };
                             ComponentFactory.GetComponent<AndroidFacebookLoader>();
                             ComponentFactory.GetComponent<CodelessUIInteractEvent>();
-                            break;
-                        case FacebookUnityPlatform.Windows:
-                            FB.OnDLLLoadedDelegate = delegate
-                            {
-                                ((WindowsFacebook)FB.facebook).Init(appId, clientToken, onHideUnity, onInitComplete);
-                            };
-                            ComponentFactory.GetComponent<WindowsFacebookLoader>();
                             break;
                         default:
                             throw new NotSupportedException("The facebook sdk does not support this platform");
@@ -1404,60 +1367,6 @@ namespace Facebook.Unity
                 {
                     androidFacebook.RetrieveLoginStatus(callback);
                 }
-            }
-        }
-
-        public sealed class Windows
-        {
-            private static IWindowsFacebook WindowsFacebookImpl
-            {
-                get
-                {
-                    IWindowsFacebook impl = FacebookImpl as IWindowsFacebook;
-                    if (impl == null)
-                    {
-                        throw new InvalidOperationException("Attempt to call Windows interface on non Windows platform");
-                    }
-
-                    return impl;
-                }
-            }
-
-            /// <summary>
-            /// Sets the Virtual Gamepad Layout to use.
-            /// </summary>
-            /// <param name="layout">Name of the layout to use.</param>
-            /// <param name="callback">Callback to be called when request completes.</param>
-            public static void SetVirtualGamepadLayout(string layout, FacebookDelegate<IVirtualGamepadLayoutResult> callback)
-            {
-                Windows.WindowsFacebookImpl.SetVirtualGamepadLayout(layout, callback);
-            }
-
-            /// <summary>
-            /// Open Virtual Keyboard in mobile devices.
-            /// </summary>
-            /// <param name="open"> true if you want to open the keyboard</param>
-            /// <param name="callback">Callback to be called when request completes.</param>
-            public static void SetSoftKeyboardOpen(bool open, FacebookDelegate<ISoftKeyboardOpenResult> callback)
-            {
-                Windows.WindowsFacebookImpl.SetSoftKeyboardOpen(open, callback);
-            }
-
-            /// <summary>
-            /// Create a referral link
-            /// </summary>
-            /// <param name="payload">Custom payload to get by the game</param>
-            public static void CreateReferral(string payload, FacebookDelegate<IReferralsCreateResult> callback)
-            {
-                Windows.WindowsFacebookImpl.CreateReferral(payload, callback);
-            }
-
-            /// <summary>
-            /// Get Data from referral link
-            /// </summary>
-            public static void GetDataReferral(FacebookDelegate<IReferralsGetDataResult> callback)
-            {
-                Windows.WindowsFacebookImpl.GetDataReferral(callback);
             }
         }
 

@@ -61,10 +61,4 @@
       <Name>Facebook.Unity.Settings</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="android\DefaultAndroidManifest.xml" />
-  </ItemGroup>
-  <ItemGroup>
-    <Folder Include="iOS\PBX\" />
-  </ItemGroup>
 </Project>

@@ -68,9 +68,6 @@
   </ItemGroup>
   <!-- END_UNITY_REFERENCES -->
   <ItemGroup>
-    <Folder Include="Plugins\" />
-  </ItemGroup>
-  <ItemGroup>
     <ProjectReference Include="..\Facebook.Unity.Settings\Facebook.Unity.Settings.csproj">
       <Project>{BA9BAAC5-5D12-460A-A8B3-428CC1F1CCC6}</Project>
       <Name>Facebook.Unity.Settings</Name>

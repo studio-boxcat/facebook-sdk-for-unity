@@ -127,7 +127,8 @@ namespace Facebook.Unity
         {
             get
             {
-                return Constants.CurrentPlatform == FacebookUnityPlatform.WebGL;
+                // return Constants.CurrentPlatform == FacebookUnityPlatform.WebGL;
+                return false;
             }
         }
 
@@ -158,14 +159,6 @@ namespace Facebook.Unity
             }
         }
 
-        public static bool DebugMode
-        {
-            get
-            {
-                return Debug.isDebugBuild;
-            }
-        }
-
         public static FacebookUnityPlatform CurrentPlatform
         {
             get
@@ -192,10 +185,6 @@ namespace Facebook.Unity
                     return FacebookUnityPlatform.Android;
                 case RuntimePlatform.IPhonePlayer:
                     return FacebookUnityPlatform.IOS;
-                case RuntimePlatform.WebGLPlayer:
-                    return FacebookUnityPlatform.WebGL;
-                case RuntimePlatform.WindowsPlayer:
-                    return FacebookUnityPlatform.Windows;
                 default:
                     return FacebookUnityPlatform.Unknown;
             }
