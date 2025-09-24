@@ -28,8 +28,6 @@ namespace Facebook.Unity.Settings
     /// </summary>
     public class FacebookSettings : ScriptableObject
     {
-
-
         public const string FacebookSettingsAssetName = "FacebookSettings";
         public const string FacebookSettingsPath = "FacebookSDK/SDK/Resources";
         public const string FacebookSettingsAssetExtension = ".asset";
@@ -55,8 +53,6 @@ namespace Facebook.Unity.Settings
         private bool xfbml = false;
         [SerializeField]
         private bool frictionlessRequests = true;
-        [SerializeField]
-        private string androidKeystorePath = string.Empty;
         [SerializeField]
         private string iosURLSuffix = string.Empty;
         [SerializeField]
@@ -272,27 +268,6 @@ namespace Facebook.Unity.Settings
                 if (Instance.xfbml != value)
                 {
                     Instance.xfbml = value;
-                    SettingsChanged();
-                }
-            }
-        }
-
-        /// <summary>
-        /// Gets or sets the android keystore path.
-        /// </summary>
-        /// <value>The android keystore path.</value>
-        public static string AndroidKeystorePath
-        {
-            get
-            {
-                return Instance.androidKeystorePath;
-            }
-
-            set
-            {
-                if (Instance.androidKeystorePath != value)
-                {
-                    Instance.androidKeystorePath = value;
                     SettingsChanged();
                 }
             }

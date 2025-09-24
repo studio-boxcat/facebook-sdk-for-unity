@@ -58,10 +58,8 @@ namespace Facebook.Unity.Editor
         private GUIContent xfbmlLabel = new GUIContent("Xfbml [?]", "(Web Player only If true) Facebook will immediately parse any XFBML elements on the Facebook Canvas page hosting the app");
         private GUIContent frictionlessLabel = new GUIContent("Frictionless Requests [?]", "Use frictionless app requests, as described in their own documentation.");
 
-        private GUIContent androidKeystorePathLabel = new GUIContent("Android Keystore Path [?]", "Set this field if you have a customized android keystore path");
         private GUIContent packageNameLabel = new GUIContent("Package Name [?]", "aka: the bundle identifier");
         private GUIContent classNameLabel = new GUIContent("Class Name [?]", "aka: the activity name");
-        private GUIContent debugAndroidKeyLabel = new GUIContent("Debug Android Key Hash [?]", "Copy this key to the Facebook Settings in order to test a Facebook Android app");
 
         private GUIContent autoLogAppEventsLabel = new GUIContent("Auto Logging App Events [?]", "If true, automatically log app install, app launch and in-app purchase events to Facebook. https://developers.facebook.com/docs/app-events/");
         private GUIContent advertiserIDCollectionLabel = new GUIContent("AdvertiserID Collection [?]", "If true, attempts to collect user's AdvertiserID. https://developers.facebook.com/docs/app-ads/targeting/mobile-advertiser-ids/");
@@ -279,40 +277,6 @@ namespace Facebook.Unity.Editor
             this.showAndroidUtils = EditorGUILayout.Foldout(this.showAndroidUtils, "Android Build Facebook Settings");
             if (this.showAndroidUtils)
             {
-                if (!FacebookAndroidUtil.SetupProperly)
-                {
-                    var msg = "Your Android setup is not right. Check the documentation.";
-                    switch (FacebookAndroidUtil.SetupError)
-                    {
-                        case FacebookAndroidUtil.ErrorNoSDK:
-                            msg = "You don't have the Android SDK setup!  Go to " + (Application.platform == RuntimePlatform.OSXEditor ? "Unity" : "Edit") + "->Preferences... and set your Android SDK Location under External Tools";
-                            break;
-                        case FacebookAndroidUtil.ErrorNoKeystore:
-                            msg = "Your android debug keystore file is missing! You can create new one by creating and building empty Android project in Ecplise.";
-                            break;
-                        case FacebookAndroidUtil.ErrorNoKeytool:
-                            msg = "Keytool not found. Make sure that Java is installed, and that Java tools are in your path.";
-                            break;
-                        case FacebookAndroidUtil.ErrorNoOpenSSL:
-                            msg = "OpenSSL not found. Make sure that OpenSSL is installed, and that it is in your path.";
-                            break;
-                        case FacebookAndroidUtil.ErrorKeytoolError:
-                            msg = "Unkown error while getting Debug Android Key Hash.";
-                            break;
-                    }
-
-                    EditorGUILayout.HelpBox(msg, MessageType.Warning);
-                }
-
-                EditorGUILayout.BeginHorizontal();
-                EditorGUILayout.LabelField(this.androidKeystorePathLabel, GUILayout.Width(180), GUILayout.Height(16));
-                FacebookSettings.AndroidKeystorePath = EditorGUILayout.TextField(FacebookSettings.AndroidKeystorePath);
-                EditorGUILayout.EndHorizontal();
-                EditorGUILayout.LabelField(
-                    "Copy and Paste these into your \"Native Android App\" Settings on developers.facebook.com/apps");
-                this.SelectableLabelField(this.packageNameLabel, Utility.GetApplicationIdentifier());
-                this.SelectableLabelField(this.classNameLabel, ManifestMod.DeepLinkingActivityName);
-                this.SelectableLabelField(this.debugAndroidKeyLabel, FacebookAndroidUtil.DebugKeyHash);
                 if (GUILayout.Button("Regenerate Android Manifest"))
                 {
                     ManifestMod.GenerateManifest();

@@ -48,19 +48,6 @@ namespace Facebook.Unity.Editor
 
             if (target == BuildTarget.Android)
             {
-                // The default Bundle Identifier for Unity does magical things that causes bad stuff to happen
-                var defaultIdentifier = "com.Company.ProductName";
-
-                if (Utility.GetApplicationIdentifier() == defaultIdentifier)
-                {
-                    Debug.LogError("The default Unity Bundle Identifier (com.Company.ProductName) will not work correctly.");
-                }
-
-                if (!FacebookAndroidUtil.SetupProperly)
-                {
-                    Debug.LogError("Your Android setup is not correct. See Settings in Facebook menu.");
-                }
-
                 if (!ManifestMod.CheckManifest())
                 {
                     // If something is wrong with the Android Manifest, try to regenerate it to fix it for the next build.
