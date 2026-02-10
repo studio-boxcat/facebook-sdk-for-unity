@@ -133,7 +133,7 @@ namespace Facebook.Unity
             {
                 return null;
             }
-            return UnityEngine.Object.FindObjectsOfType(type);
+            return UnityEngine.Object.FindObjectsByType(type, FindObjectsSortMode.None);
         }
 
         private static object GetField(object inObj, string fieldName)
